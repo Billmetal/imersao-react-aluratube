@@ -1,0 +1,29 @@
+{
+    "name": "Willian K.",
+    "job": "Desenvolvedor FullStack",
+    "github": "billmetal",
+    "playlists": {
+        "jogos": [
+            {
+                "title": "Starcraft 2",
+                "url": "https://www.youtube.com/watch?v=3frQjtyogMs",
+                "thumb": "https://i.ytimg.com/vi/3frQjtyogMs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLARVRFsA9_1qk6r5B8RoKH9iFlA4Q"
+            },{
+                "title": "Um Título Qualquer 2",
+                "url": "url 2",
+                "thumb": "Thumbnail do vídeo 2"
+            }
+        ],
+        "frontend": [
+            {
+                "title": "Um Título Qualquer",
+                "url": "url",
+                "thumb": "Thumbnail do vídeo"
+            },{
+                "title": "Um Título Qualquer 2",
+                "url": "url 2",
+                "thumb": "Thumbnail do vídeo 2"
+            }
+        ]
+    }
+}
