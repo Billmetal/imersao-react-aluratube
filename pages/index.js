@@ -1,25 +1,30 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import config from "../config.json"
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
+import banner from "../src/assets/banner-sec.jpeg";
 
 function HomePage() {
   const mensagem = "Este é o MyTube";
+
   const estilosHomePage = { 
     display: "flex",
     flexDirection: "column",
     flex: 1
    };
 
+   const [valorDoFiltro, setValorDoFiltro] = useState("");
+
     return (
       <>
         <CSSReset />
         <div style={estilosHomePage} >
           {mensagem}
-          <Menu />
-          <Header></Header>
-          <Timeline playlists={config.playlists} ></Timeline>
+          <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
+          <Header />
+          <Timeline searchValue={valorDoFiltro} playlists={config.playlists} ></Timeline>
         </div>
       </>
     );
@@ -34,7 +39,6 @@ function HomePage() {
       border-radius: 50%;
     }
     .user-info {
-      margin-top: 50px;
       display: flex;
       align-items: center;
       width: 100%;
@@ -43,11 +47,16 @@ function HomePage() {
     }
   `;
 
+  const StyledBanner = styled.div`
+    background-image: url(${banner.src});
+    height: 280px;
+    //background-color: blue;
+  `;
+
   function Header(){
     return(
       <StyledHeader>
-        {/* <img src="banner" /> */}
-
+        <StyledBanner />
         <section className="user-info">
           <img src={`https://github.com/${config.github}.png`} />
           <div>
@@ -59,20 +68,22 @@ function HomePage() {
     );
   }
 
-  function Timeline(props){
+  function Timeline({searchValue, ...props}){
     const playlistNames = Object.keys(props.playlists);
 
     return(
       <StyledTimeline>
-        {playlistNames.map((playlistName) => {
+        {playlistNames.map((playlistName,index) => {
           const videos = props.playlists[playlistName];
           return(
-            <section>
+            <section key={`sec-${index}`}>
               <h2>{playlistName}</h2>
               <div>
-                {videos.map((video) => {
+                {videos.filter((video) => {
+                  return video.title.toLowerCase().includes(searchValue.toLowerCase());
+                }).map((video,index) => {
                   return(
-                    <a href={video.url}>
+                    <a key={`vid-${index}`} href={video.url}>
                       <img src={video.thumb}/>
                       <span>{video.title}</span>
                     </a>
