@@ -9,20 +9,36 @@
                 "url": "https://www.youtube.com/watch?v=3frQjtyogMs",
                 "thumb": "https://i.ytimg.com/vi/3frQjtyogMs/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLARVRFsA9_1qk6r5B8RoKH9iFlA4Q"
             },{
-                "title": "Um Título Qualquer 2",
-                "url": "url 2",
-                "thumb": "Thumbnail do vídeo 2"
+                "title": "Euro Truck Simulator 2",
+                "url": "https://www.youtube.com/watch?v=JjL3LrASBVw&t=232s",
+                "thumb": "https://i.ytimg.com/an_webp/JjL3LrASBVw/mqdefault_6s.webp?du=3000&sqp=CPjruJsG&rs=AOn4CLDKBCe4p9G3ceMjkD-9uWDvLGG6DQ"
+            },{
+                "title": "American Truck Simulator",
+                "url": "https://www.youtube.com/watch?v=upOVfM3l2-k",
+                "thumb": "https://i.ytimg.com/an_webp/upOVfM3l2-k/mqdefault_6s.webp?du=3000&sqp=CLPuuJsG&rs=AOn4CLBV3sPq1uUtlyNMifEPe1wqDI8SGg"
+            },{
+                "title": "Heroes Of The Storm",
+                "url": "https://www.youtube.com/watch?v=98o6SGsb1aQ",
+                "thumb": "https://i.ytimg.com/an_webp/98o6SGsb1aQ/mqdefault_6s.webp?du=3000&sqp=CIDZuJsG&rs=AOn4CLBOE1GkpDaQPlNIlSbDFsBn48wBug"
+            },{
+                "title": "COD Warzone",
+                "url": "https://www.youtube.com/watch?v=LgW-CzTgE70",
+                "thumb": "https://i.ytimg.com/an_webp/LgW-CzTgE70/mqdefault_6s.webp?du=3000&sqp=CJj4uJsG&rs=AOn4CLBgWZjO__Nb6uataWBvG14q7gQqTw"
             }
         ],
         "frontend": [
             {
-                "title": "Um Título Qualquer",
-                "url": "url",
-                "thumb": "Thumbnail do vídeo"
+                "title": "HTML CSS e Javascript",
+                "url": "https://www.youtube.com/watch?v=qPYCnebQQ6U",
+                "thumb": "https://i.ytimg.com/an_webp/qPYCnebQQ6U/mqdefault_6s.webp?du=3000&sqp=CN3fuJsG&rs=AOn4CLBOwDRaq1gGgBBUTga-ouGG8fht2w"
             },{
-                "title": "Um Título Qualquer 2",
-                "url": "url 2",
-                "thumb": "Thumbnail do vídeo 2"
+                "title": "Angular",
+                "url": "https://www.youtube.com/watch?v=36G-ZFcllkk&pp=ugMICgJwdBABGAE%3D",
+                "thumb": "https://i.ytimg.com/an_webp/36G-ZFcllkk/mqdefault_6s.webp?du=3000&sqp=CITruJsG&rs=AOn4CLDcwM3CSEh-F7G_UdI8UlN3moGrpQ"
+            },{
+                "title": "React",
+                "url": "https://www.youtube.com/watch?v=NhUr8cwDiiM",
+                "thumb": "https://i.ytimg.com/an_webp/NhUr8cwDiiM/mqdefault_6s.webp?du=3000&sqp=CMnduJsG&rs=AOn4CLBvqr9Fl1_jeered7HP7Ut6WiQStQ"
             }
         ]
     }
