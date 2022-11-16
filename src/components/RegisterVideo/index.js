@@ -20,7 +20,8 @@ function useForm(propsDoForm){
     };
 }
 
-const supabase = createClient(process.env.PROJECT_URL, process.env.PUBLIC_KEY);
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 export default function RegisterVideo({ loadVideos }){
     const [formVisivel, setFormVisivel] = useState(false);
