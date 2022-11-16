@@ -1,5 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 import { useState } from "react";
 import { StyledRegisterVideo } from "./styles";
+
+function getYoutubeThumbnail(url){
+    return `https://img.youtube.com/vi/${url.split("v=")[1]}/hqdefault.jpg`;
+}
 
 function useForm(propsDoForm){
     const [values, setValues] = useState(propsDoForm.initialValues);
@@ -15,10 +20,18 @@ function useForm(propsDoForm){
     };
 }
 
-export default function RegisterVideo(){
+const PROJECT_URL = process.env.URL;
+const PUBLIC_KEY = process.env.SUPABASE_KEY;
+
+console.log("URL = " + PROJECT_URL);
+console.log("APIKEY = " + PUBLIC_KEY);
+
+const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+
+export default function RegisterVideo({ loadVideos }){
     const [formVisivel, setFormVisivel] = useState(false);
     const formCadastro = useForm({
-        initialValues: {titulo: "", url: ""}
+        initialValues: {titulo: "", url: "",categoria: ""}
     });
 
     return(
@@ -27,14 +40,32 @@ export default function RegisterVideo(){
             {formVisivel ? (<>
                 <form onSubmit={(evento) => {
                     evento.preventDefault();
-                    setFormVisivel(false);
-                    formCadastro.clearForm();
+
+                    supabase.from("video").insert({
+                        title: formCadastro.values.titulo,
+                        url: formCadastro.values.url,
+                        thumb: getYoutubeThumbnail(formCadastro.values.url),
+                        playlist: formCadastro.values.categoria,
+                    }).then((resp) => {
+                        setFormVisivel(false);
+                        formCadastro.clearForm();
+                        loadVideos();
+                    }).catch((err) => {
+                        alert("Erro : " + err);
+                    });
                 }}>
                     <div>
-                        <button type="button" className="close-modal"  onClick={() => setFormVisivel(false)}>X</button>
+                        <button type="button" className="close-modal"  onClick={() => {
+                            setFormVisivel(false);
+                            formCadastro.clearForm();
+                        }}>X</button>
                         <input name="titulo" placeholder="Título do vídeo" value={formCadastro.values.titulo} onChange={formCadastro.handleChange}/>
                         <input name="url" placeholder="URL" value={formCadastro.values.url} onChange={formCadastro.handleChange}/>
+                        <input name="categoria" placeholder="Categoria" value={formCadastro.values.categoria} onChange={formCadastro.handleChange}/>
                         <button type="submit">Cadastrar</button>
+                        {formCadastro.values.url ? (<>
+                            <img src={getYoutubeThumbnail(formCadastro.values.url)}/>
+                        </>) : (<></>)}
                     </div>
                 </form>
             </>) : (<></>)}

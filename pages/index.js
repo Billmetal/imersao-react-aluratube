@@ -1,29 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import config from "../config.json"
-import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
 import { StyledTimeline } from "../src/components/Timeline";
 import banner from "../src/assets/banner-sec.jpeg";
+import videoService from "../src/services/videoService";
 
-function HomePage() {
-  const mensagem = "Este é o MyTube";
-
+function HomePage({ loadVid }) {
   const estilosHomePage = { 
     display: "flex",
     flexDirection: "column",
     flex: 1
    };
 
+   const service = videoService();
    const [valorDoFiltro, setValorDoFiltro] = useState("");
+   const [playlists, setPlaylists] = useState({});
+
+   function loadVideos(){
+    service.getAllVideos().then((dados) => {
+      const categorias = {};
+      
+      dados.data.forEach((video) => {       
+        if(!categorias[video.playlist]) categorias[video.playlist] = [];
+          categorias[video.playlist] = [
+            video,
+            ...categorias[video.playlist],
+          ];
+      });
+      
+      setPlaylists(categorias);
+    }).catch((err) => alert("Erro : ",err));
+   }
+
+   useEffect(() => {
+    loadVideos();
+   }, [loadVid]);
 
     return (
       <>
         <div style={estilosHomePage} >
-          {mensagem}
           <Menu valorDoFiltro={valorDoFiltro} setValorDoFiltro={setValorDoFiltro} />
           <Header />
-          <Timeline searchValue={valorDoFiltro} playlists={config.playlists} ></Timeline>
+          <Timeline searchValue={valorDoFiltro} playlists={playlists} ></Timeline>
         </div>
       </>
     );
@@ -83,7 +102,7 @@ function HomePage() {
                   return video.title.toLowerCase().includes(searchValue.toLowerCase());
                 }).map((video,index) => {
                   return(
-                    <a key={`vid-${index}`} href={video.url}>
+                    <a key={`vid-${index}`} href={video.url} target="_blank">
                       <img src={video.thumb}/>
                       <span>{video.title}</span>
                     </a>

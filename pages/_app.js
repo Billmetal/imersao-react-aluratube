@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { CSSReset } from "../src/components/CSSReset";
 import ColorModeProvider, { ColorModeContext } from "../src/components/Menu/components/ColorMode";
@@ -27,7 +27,7 @@ const theme = {
 
 function ProviderWrapper(props){
     return(
-        <ColorModeProvider initialMode={"dark"} >
+        <ColorModeProvider initialMode={"light"} >
             {props.children}
         </ColorModeProvider>
     );
@@ -35,12 +35,21 @@ function ProviderWrapper(props){
 
 function MyApp({ Component, pageProps }){
     const contexto = useContext(ColorModeContext);
+    const [load, setLoad] = useState(false);
 
+    const loadVid = () => {
+        if(load){
+            setLoad(false);
+        } else {
+            setLoad(true);
+        }
+    };
+    
     return(
         <ThemeProvider theme={theme[contexto.mode]} >           
             <CSSReset />
-            <Component {...pageProps} />   
-            <RegisterVideo />         
+            <Component loadVid={load} {...pageProps} />   
+            <RegisterVideo loadVideos={loadVid} />         
         </ThemeProvider>
     );
 }
