@@ -20,13 +20,7 @@ function useForm(propsDoForm){
     };
 }
 
-const PROJECT_URL = process.env.URL;
-const PUBLIC_KEY = process.env.SUPABASE_KEY;
-
-console.log("URL = " + PROJECT_URL);
-console.log("APIKEY = " + PUBLIC_KEY);
-
-const supabase = createClient(PROJECT_URL, PUBLIC_KEY);
+const supabase = createClient(process.env.PROJECT_URL, process.env.PUBLIC_KEY);
 
 export default function RegisterVideo({ loadVideos }){
     const [formVisivel, setFormVisivel] = useState(false);
